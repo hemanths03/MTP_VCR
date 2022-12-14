@@ -15,7 +15,7 @@ import torch.utils.model_zoo as model_zoo
 from config import USE_IMAGENET_PRETRAINED
 
 from torch.nn import functional as F
-from .pytorch_misc import pad_sequence,Flattener
+from pytorch_misc import pad_sequence,Flattener
 
 def _load_resnet(pretrained=True):
     # huge thx to https://github.com/ruotianluo/pytorch-faster-rcnn/blob/master/lib/nets/resnet_v1.py
