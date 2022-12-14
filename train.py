@@ -16,8 +16,8 @@ from torch.nn import DataParallel
 from torch.nn.modules import BatchNorm2d
 from tqdm import tqdm
 
-from dataloaders.vcr import VCR, VCRLoader
-from utils.pytorch_misc import time_batch, save_checkpoint, clip_grad_norm, \
+from vcr import VCR, VCRLoader
+from pytorch_misc import time_batch, save_checkpoint, clip_grad_norm, \
     restore_checkpoint, print_para, restore_best_checkpoint
 
 import logging
@@ -37,7 +37,7 @@ from allennlp.models.model import Model
 from allennlp.modules import TextFieldEmbedder, Seq2SeqEncoder, FeedForward, InputVariationalDropout, TimeDistributed
 from allennlp.training.metrics import CategoricalAccuracy
 from allennlp.modules.matrix_attention import BilinearMatrixAttention
-from utils.newdetector import SimpleDetector
+from newdetector import SimpleDetector
 from allennlp.nn.util import masked_softmax, weighted_sum, replace_masked_values
 from allennlp.nn import InitializerApplicator
 @Model.register("MultiHopAttentionQA")
@@ -520,6 +520,7 @@ parser.add_argument(
 args = parser.parse_args()
 
 params = Params.from_file(args.params)
+
 train, val, test = VCR.splits(mode='rationale' if args.rationale else 'answer',
                               embs_to_load=params['dataset_reader'].get('embs', 'bert_da'),
                               only_use_relevant_dets=params['dataset_reader'].get('only_use_relevant_dets', True))
