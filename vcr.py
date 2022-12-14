@@ -15,9 +15,9 @@ from allennlp.data.tokenizers.token_class import Token
 from allennlp.data.vocabulary import Vocabulary
 from allennlp.nn.util import get_text_field_mask
 from torch.utils.data import Dataset
-from dataloaders.box_utils import load_image, resize_image, to_tensor_and_normalize
-from dataloaders.mask_utils import make_mask
-from dataloaders.bert_field import BertField
+from box_utils import load_image, resize_image, to_tensor_and_normalize
+from mask_utils import make_mask
+from bert_field import BertField
 import h5py
 from copy import deepcopy
 from config import VCR_IMAGES_DIR, VCR_ANNOTS_DIR
@@ -132,7 +132,7 @@ class VCR(Dataset):
         self.token_indexers = {'elmo': ELMoTokenCharactersIndexer()}
         self.vocab = Vocabulary()
 
-        with open(os.path.join(os.path.dirname(VCR_ANNOTS_DIR), 'dataloaders', 'cocoontology.json'), 'r') as f:
+        with open(os.path.join(os.path.dirname(VCR_ANNOTS_DIR),'data', 'cocoontology.json'), 'r') as f:
             coco = json.load(f)
         self.coco_objects = ['__background__'] + [x['name'] for k, x in sorted(coco.items(), key=lambda x: int(x[0]))]
         self.coco_obj_to_ind = {o: i for i, o in enumerate(self.coco_objects)}
