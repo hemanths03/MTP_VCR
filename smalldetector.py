@@ -7,12 +7,12 @@ import torch.nn as nn
 import torch.nn.parallel
 from torchvision.models import resnet
 
-from utilstest.pytorch_misc import Flattener
+from pytorch_misc import Flattener
 # from torchvision.layers import ROIAlign
-from roi_align import RoIAlign
+from torchvision.ops import RoIAlign
 import torch.utils.model_zoo as model_zoo
 from config import USE_IMAGENET_PRETRAINED
-from utils.pytorch_misc import pad_sequence
+from pytorch_misc import pad_sequence
 from torch.nn import functional as F
 
 
